@@ -1,9 +1,11 @@
 package org.example.lot.Models;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Setter
+@Getter
 @SuperBuilder
 public class Slot extends BaseModel {
     private Integer slotNumber;
