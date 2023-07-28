@@ -25,4 +25,9 @@ public class ParkingLotRepository  {
                 .findFirst ()
                 .orElse (null);
     }
+
+    public ParkingLot save(ParkingLot parkingLot) {
+        parkingLots.add (parkingLot);
+        return parkingLot;
+    }
 }

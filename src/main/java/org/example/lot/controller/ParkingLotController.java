@@ -2,6 +2,7 @@ package org.example.lot.controller;
 
 import lombok.AllArgsConstructor;
 import org.example.lot.Models.ParkingLot;
+import org.example.lot.dtos.CreateParkingLotRequest;
 import org.example.lot.exceptions.InvalidParkingLotRequest;
 import org.example.lot.services.ParkingLotService;
 
@@ -22,6 +23,19 @@ public class ParkingLotController {
     private static void validateId(Long id) {
         if(id == null){
 //            Client Error - 400 - Bad request
+            throw new InvalidParkingLotRequest ();
+        }
+    }
+
+    //    Create a parking lot -> POST /parking-lot/
+//    DTO - Request body - Data transfer object
+    public ParkingLot createParkingLot(CreateParkingLotRequest request){
+        validateRequest(request);
+        return parkingLotService.createParking (request.toParkingLot());
+    }
+
+    private void validateRequest(CreateParkingLotRequest request){
+        if(request.getNumberOfFloors () == null || request.getNumberOfSlotsPerFloor () == null){
             throw new InvalidParkingLotRequest ();
         }
     }
